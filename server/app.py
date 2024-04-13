@@ -1,19 +1,21 @@
 #!/usr/bin/env python3
-import os
-from flask import request, session, jsonify, make_response
+
+from flask import render_template, request, session, jsonify, make_response
 from flask_restful import Resource, reqparse
 from sqlalchemy.exc import IntegrityError
 from flask_cors import CORS
 
 from config import app, db, api, cors
 from models import User, Department, Accounting, UserDepartment, Salary, Job, Registration
-from dotenv import load_dotenv
-load_dotenv()
+
 
 
 @app.route("/")
-def home():
-    return "Welcome to my API."
+@app.route('/<int:id>')
+def index(id=0):
+    return render_template("index.html")
+# def home():
+#     return "Welcome to my API."
 
 
 # Frank
